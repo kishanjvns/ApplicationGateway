@@ -1,0 +1,38 @@
+eureka:
+  instance:
+    preferIpAddress: true
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+    service-url:
+      defaultZone: http://localhost:8008/eureka
+info:
+  application:
+    description: Very cool Spring Boot application
+    name: ${spring.application.name}
+    spring-boot-version: '@project.parent.version@'
+    spring-cloud-version: '@spring-cloud.version@'
+    version: '@project.version@'
+management:
+  endpoints:
+    web:
+      exposure:
+        include: info
+  info:
+    env:
+      enabled: true
+server:
+  port: 8082
+spring:
+  application:
+    name: APPLICATION-GATEWAY
+  cloud: 
+    gateway:
+      routes:
+      - id: userModule
+        uri: lb://User-Service
+        predicates:
+        - Path=/v1/api/userservice/**
+      discovery:
+        locator:
+          enabled: true

@@ -26,13 +26,3 @@ server:
 spring:
   application:
     name: APPLICATION-GATEWAY
-  cloud: 
-    gateway:
-      routes:
-      - id: userModule
-        uri: lb://User-Service
-        predicates:
-        - Path=/v1/api/userservice/**
-      discovery:
-        locator:
-          enabled: true

@@ -12,8 +12,9 @@ public class RouterConfiguration {
 	public RouteLocator routesUserService(RouteLocatorBuilder builder) {
 		return builder.routes().route("userModule", r-> r.path("/v1/api/userservice/**").uri("lb://User-Service")).build();
 	}
+	
 	@Bean
-	public RouteLocator routesTeacherService(RouteLocatorBuilder builder) {
-		return null;
+	public RouteLocator routesStudentService(RouteLocatorBuilder builder) {
+		return builder.routes().route("studentModule", r-> r.path("/v1/api/studentservice/**").uri("lb://Student-Service")).build();
 	}
 }
